@@ -1,0 +1,155 @@
+import java.util.*;
+public class SciCalculator {
+
+    public static void main(String[] args){
+
+        //all variables other than avgOf, located in switch case 7
+        Scanner scan = new Scanner(System.in);
+        double first;
+        double second;
+        double result = 0;
+        double sumOf = 0;
+        int choice;
+        int numOf = 0;
+
+
+        System.out.println("Current Result: " + toTwo(result));
+        printMenu();
+
+        //boolean variable keeps while loop running
+        boolean cont = true;
+        //while loop takes in user input and runs the switch statement
+        while (cont) {
+            System.out.println("Enter Menu Selection: ");
+            choice = scan.nextInt();
+
+            //switch statement that uses the user inputted choice as the cases
+            switch (choice) {
+                case 0:
+                    //sets the boolean to false, exiting the while loop and the program
+                    System.out.println("Thanks for using this calculator. Goodbye!");
+                    cont = false;
+                    break;
+                case 1:
+                    //adds the two user inputted operands and prints the menu, as well
+                    //as increments number of calculations and changes the current result value
+                    System.out.println("Enter first operand: ");
+                    first = scan.nextDouble();
+                    System.out.println("Enter second operand: ");
+                    second = scan.nextDouble();
+                    result = (first + second);
+                    numOf++;
+                    sumOf += result;
+                    System.out.println("Current Result: " + toTwo(result));
+                    printMenu();
+                    break;
+                case 2:
+                    //subtracts
+                    System.out.println("Enter first operand: ");
+                    first = scan.nextDouble();
+                    System.out.println("Enter second operand: ");
+                    second = scan.nextDouble();
+                    result = (first - second);
+                    numOf++;
+                    sumOf += result;
+                    System.out.println("Current Result: " + toTwo(result));
+                    printMenu();
+                    break;
+                case 3:
+                    //multiplies
+                    System.out.println("Enter first operand: ");
+                    first = scan.nextDouble();
+                    System.out.println("Enter second operand: ");
+                    second = scan.nextDouble();
+                    result = (first * second);
+                    numOf++;
+                    sumOf += result;
+                    System.out.println("Current Result: " + toTwo(result));
+                    printMenu();
+                    break;
+                case 4:
+                    //divides
+                    System.out.println("Enter first operand: ");
+                    first = scan.nextDouble();
+                    System.out.println("Enter second operand: ");
+                    second = scan.nextDouble();
+                    result = (first / second);
+                    numOf++;
+                    sumOf += result;
+                    System.out.println("Current Result: " + toTwo(result));
+                    printMenu();
+                    break;
+                case 5:
+                    //takes the first operand to the power of the second operand
+                    System.out.println("Enter first operand: ");
+                    first = scan.nextDouble();
+                    System.out.println("Enter second operand: ");
+                    second = scan.nextDouble();
+                    result = Math.pow(first, second);
+                    numOf++;
+                    sumOf += result;
+                    System.out.println("Current Result: " + toTwo(result));
+                    printMenu();
+                    break;
+                case 6:
+                    //take the log of the second operand to the base of the first operand
+                    System.out.println("Enter first operand: ");
+                    first = scan.nextDouble();
+                    System.out.println("Enter second operand: ");
+                    second = scan.nextDouble();
+                    result = Math.log(second) / Math.log(first);
+                    numOf++;
+                    sumOf += result;
+                    System.out.println("Current Result: " + toTwo(result));
+                    printMenu();
+                    break;
+                case 7:
+                    //if this is the first choice, an error message is printed
+                    //if not, the sum and average of all the calculations is printed, as
+                    //well as the number of calculations completed
+                    if (numOf == 0) {
+                        System.out.println("Error: No calculations yet to average!");
+                    } else {
+                        System.out.println("Sum of calculations: " + toTwo(sumOf));
+                        System.out.println("Number of calculations: " + numOf);
+                        double avgOf = (sumOf / (double) numOf);
+                        System.out.println("Average of calculations: " + toTwo(avgOf));
+                    }
+                    break;
+                default:
+                    //error statement if anything other an int 0-7 is taken
+                    // in by the scanner for int choice
+                    System.out.println("Error: Invalid selection!");
+                    break;
+            }
+
+        }
+    }
+
+    //function that truncates the decimals to two places by getting the two
+    //decimal places on the right side of the decimal, casting the double into an
+    //int, then dividing by 100 to move the decimal places back
+    public static double toTwo(double num){
+        int intNum;
+        intNum = (int)(num * 100);
+        num = intNum / 100d;
+        return num;
+    }
+
+    //function that prints the calculator menu when called
+    public static void printMenu(){
+        System.out.println();
+        System.out.println("Calculator Menu");
+        System.out.println("---------------");
+        System.out.println("0. Exit Program");
+        System.out.println("1. Addition");
+        System.out.println("2. Subtraction");
+        System.out.println("3. Multiplication");
+        System.out.println("4. Division");
+        System.out.println("5. Exponentiation");
+        System.out.println("6. Logarithm");
+        System.out.println("7. Display Average");
+        System.out.println();
+
+    }
+}
